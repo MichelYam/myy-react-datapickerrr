@@ -1,9 +1,9 @@
 import React, { Dispatch, ReactNode, SetStateAction, useEffect, useState } from 'react'
-import "./style.css"
-import CalendarHeader from "./Calendar-header"
-import { IParamsCalendarHeader } from "../Datapicker"
+import './style.css'
+import CalendarHeader from './Calendar-header'
+import { IParamsCalendarHeader } from '../Datapicker'
 import Week from './Week'
-import PropTypes from "prop-types"
+import PropTypes from 'prop-types'
 
 type props = {
   dataFormat: string
@@ -34,10 +34,10 @@ const Index = ({ customHeader, setSelectedDate, selectedDate, dataFormat, setFoc
     day: '',
     month: '',
     year: '',
-    otherMonth: "",
+    otherMonth: '',
   })
 
-  const listOfDay = ["Lu", "Ma", "Me", "Je", "Ve", "Sa", "Di"]
+  const listOfDay = ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di']
   const dateRegex = /^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/
 
   useEffect(() => {
@@ -45,7 +45,7 @@ const Index = ({ customHeader, setSelectedDate, selectedDate, dataFormat, setFoc
   }, [daySelected, currentMonth, currentYear])
 
   useEffect(() => {
-    if (daySelected.day !== "") checkDaySelected(daySelected)
+    if (daySelected.day !== '') checkDaySelected(daySelected)
   }, [daySelected])
 
   useEffect(() => {
@@ -70,7 +70,7 @@ const Index = ({ customHeader, setSelectedDate, selectedDate, dataFormat, setFoc
         newArr.push({
           value: lastDayOfPrevMonth - firstWeekDay + i + 1,
           selected: false,
-          otherMonth: "previous-month",
+          otherMonth: 'previous-month',
           month: currentMonth === 0 ? 11 : currentMonth - 1,
           year: currentMonth === 0 ? currentYear - 1 : currentYear
         })
@@ -79,7 +79,7 @@ const Index = ({ customHeader, setSelectedDate, selectedDate, dataFormat, setFoc
         newArr.push({
           value: nextDay,
           selected: false,
-          otherMonth: "next-month",
+          otherMonth: 'next-month',
           month: currentMonth === 11 ? 0 : currentMonth + 1,
           year: currentMonth === 11 ? currentYear + 1 : currentYear
         })
@@ -107,7 +107,7 @@ const Index = ({ customHeader, setSelectedDate, selectedDate, dataFormat, setFoc
     let newMonth = currentMonth
     let newYear = currentYear
 
-    if (daySelected.otherMonth === "previous-month") {
+    if (daySelected.otherMonth === 'previous-month') {
       if (currentMonth === 0) {
         newYear -= 1
         newMonth = 11
@@ -119,7 +119,7 @@ const Index = ({ customHeader, setSelectedDate, selectedDate, dataFormat, setFoc
       }
 
       setCurrentMonth(newMonth)
-    } else if (daySelected.otherMonth === "next-month") {
+    } else if (daySelected.otherMonth === 'next-month') {
       if (currentMonth === 11) {
         newYear += 1
         newMonth = 0
@@ -132,10 +132,10 @@ const Index = ({ customHeader, setSelectedDate, selectedDate, dataFormat, setFoc
     }
 
 
-    const month = newMonth + 1 < 10 ? "0" + (newMonth + 1) : newMonth + 1
+    const month = newMonth + 1 < 10 ? '0' + (newMonth + 1) : newMonth + 1
     const year = newYear
 
-    dataFormat === "MM/DD/YYYY" ? setSelectedDate(`${month}/${daySelected.day}/${year}`) :
+    dataFormat === 'MM/DD/YYYY' ? setSelectedDate(`${month}/${daySelected.day}/${year}`) :
       setSelectedDate(`${daySelected.day}/${month}/${year}`)
     setFocus(false)
   }
@@ -151,7 +151,7 @@ const Index = ({ customHeader, setSelectedDate, selectedDate, dataFormat, setFoc
     const day = todayDate.getDate()
     const month = todayDate.getMonth()
     const year = todayDate.getFullYear()
-    const dateInput = selectedDate.split("/").map(Number)
+    const dateInput = selectedDate.split('/').map(Number)
     // console.log(dateInput);
     if (!date.day && !selectedDate && day === currentDate && month === currentMonth && year === currentYear) {
       return true
@@ -170,7 +170,7 @@ const Index = ({ customHeader, setSelectedDate, selectedDate, dataFormat, setFoc
    */
   const handleValueInput = (selectedDate: string) => {
     if (dateRegex.test(selectedDate)) {
-      const date = selectedDate.split("/").map(Number)
+      const date = selectedDate.split('/').map(Number)
       setCurrentMonth(date[1] - 1)
       setCurrentYear(date[2])
     }
@@ -198,18 +198,18 @@ const Index = ({ customHeader, setSelectedDate, selectedDate, dataFormat, setFoc
     }
   }
   return (
-    <div className={`datapicker-calendar ${focus ? "show" : ""} `}>
+    <div className={`datapicker-calendar ${focus ? 'show' : ''} `}>
       <div className='calendar'>
         <CalendarHeader currentMonth={currentMonth} currentYear={currentYear} next={next} prev={prev} customHeader={customHeader} changeYear={setCurrentYear} changeMonth={setCurrentMonth} />
         <div className='calendar-body'>
-          <div className="calendar-day">
+          <div className='calendar-day'>
             {listOfDay.map((day, index) => (
               <span className='day-week' key={index}>
                 {day}
               </span>
             ))}
           </div>
-          <div id="calendar-container" className="calendar-container">
+          <div id='calendar-container' className='calendar-container'>
             {
               [...Array(6)].map((_value, index) => (
                 <Week key={index} calendarData={currentDateCalendar} indexWeek={index} setDaySelected={setDaySelected} />
