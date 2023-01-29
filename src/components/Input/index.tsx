@@ -9,7 +9,7 @@ type props = {
     dataFormat: string,
     focus: boolean
 }
-const Index = ({ selectedDate, setSelectedDate, setFocus, dataFormat, focus }: props) => {
+const Index = ({ selectedDate, setSelectedDate, setFocus, dataFormat }: props) => {
     return (
         <input
             id="data"

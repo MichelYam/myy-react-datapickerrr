@@ -211,7 +211,7 @@ const Index = ({ customHeader, setSelectedDate, selectedDate, dataFormat, setFoc
           </div>
           <div id="calendar-container" className="calendar-container">
             {
-              [...Array(6)].map((value, index) => (
+              [...Array(6)].map((_value, index) => (
                 <Week key={index} calendarData={currentDateCalendar} indexWeek={index} setDaySelected={setDaySelected} />
               ))
             }

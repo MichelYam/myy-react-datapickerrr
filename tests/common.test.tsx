@@ -7,7 +7,7 @@ import { Datapicker } from '../src'
 
 describe('Common render', () => {
   it('renders without crashing', () => {
-    render(<Datapicker dataFormat={''} selectedDate={''} setSelectedDate={function (value: React.SetStateAction<string>): void {
+    render(<Datapicker dataFormat={''} selectedDate={''} setSelectedDate={function (_value: React.SetStateAction<string>): void {
       throw new Error('Function not implemented.')
     }} />)
   })
