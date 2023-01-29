@@ -1,31 +1,5 @@
-// import React, { useState } from 'react'
-
-// type Props = {
-//   value?: number
-// }
-// const MyCounter = ({ value = 0 }: Props) => {
-//   const [counter, setCounter] = useState(value)
-
-//   const onMinus = () => {
-//     setCounter((prev) => prev - 1)
-//   }
-
-//   const onPlus = () => {
-//     setCounter((prev) => prev + 1)
-//   }
-
-//   return (
-//     <div>
-//       <h1>Counter: {counter}</h1>
-//       <button onClick={onMinus}>-</button>
-//       <button onClick={onPlus}>+</button>
-//     </div>
-//   )
-// }
-
-// export default MyCounter
 import React, { Dispatch, ReactNode, SetStateAction, useState } from 'react'
-// import Calendar from './Calendar'
+import Calendar from './Calendar'
 import Input from './Input'
 import PropTypes from 'prop-types'
 
@@ -52,13 +26,8 @@ const Datapicker = ({ selectedDate, setSelectedDate, customHeader, dataFormat }:
         setFocus(false)
       }}
     >
-      <Input
-        setFocus={setFocus}
-        focus={focus}
-        selectedDate={selectedDate}
-        setSelectedDate={setSelectedDate}
-        dataFormat={dataFormat}
-      />
+      <Input setFocus={setFocus} focus={focus} selectedDate={selectedDate} setSelectedDate={setSelectedDate} dataFormat={dataFormat} />
+      <Calendar focus={focus} setFocus={() => setFocus(false)} customHeader={customHeader} selectedDate={selectedDate} setSelectedDate={setSelectedDate} dataFormat={dataFormat} />
     </div>
   )
 }
