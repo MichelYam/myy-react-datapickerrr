@@ -3,10 +3,12 @@ import { render } from '@testing-library/react'
 
 import 'jest-canvas-mock'
 
-import { MyCounter } from '../src'
+import { Datapicker } from '../src'
 
 describe('Common render', () => {
   it('renders without crashing', () => {
-    render(<MyCounter />)
+    render(<Datapicker dataFormat={''} selectedDate={''} setSelectedDate={function (value: React.SetStateAction<string>): void {
+      throw new Error('Function not implemented.')
+    }} />)
   })
 })
