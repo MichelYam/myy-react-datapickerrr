@@ -1,21 +1,21 @@
 import React from 'react'
-import PropTypes from "prop-types"
+import PropTypes from 'prop-types'
+import './style.css'
 
-import "./style.css"
-type props = {
-    value: string | number,
-    year?: string | number,
-    month?: string | number,
-    selected?: boolean,
+type Props = {
+    value: string | number
+    year?: string | number
+    month?: string | number
+    selected?: boolean
     otherMonth: boolean | string
-    setDaySelected: ({ }) => void,
+    setDaySelected: ({ }) => void
 }
 
-const Index = ({ value, selected, otherMonth, setDaySelected, year, month }: props) => {
+const Index = ({ value, selected, otherMonth, setDaySelected, year, month }: Props) => {
 
     const handleOnClick = (e: React.MouseEvent<HTMLElement>) => {
         const target = e.currentTarget.dataset.day;
-        const date = parseInt(target!, 10) < 10 ? "0" + target : target
+        const date = parseInt(target!, 10) < 10 ? '0' + target : target
         setDaySelected({
             day: date,
             otherMonth: e.currentTarget.dataset.month,
@@ -24,9 +24,9 @@ const Index = ({ value, selected, otherMonth, setDaySelected, year, month }: pro
         })
 
     }
-    const isMonth = otherMonth === false ? "" : otherMonth === "previous-month" ? "previous-month" : "next-month"
+    const isMonth = otherMonth === false ? '' : otherMonth === 'previous-month' ? 'previous-month' : 'next-month'
     return (
-        <span data-day={value} data-month={isMonth} className={`day ${isMonth}${selected ? "selected" : ""}`} onClick={handleOnClick} >
+        <span data-day={value} data-month={isMonth} className={`day ${isMonth}${selected ? 'selected' : ''}`} onClick={handleOnClick} >
             {value}
         </span>
     )

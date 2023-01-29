@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import { IParamsCalendarHeader } from '../../datapicker';
-import PropTypes from "prop-types"
+import { IParamsCalendarHeader } from '../../Datapicker';
+import PropTypes from 'prop-types'
 
 type props = {
     currentMonth: number | string,
@@ -14,10 +14,10 @@ type props = {
     customHeader?(params: IParamsCalendarHeader): ReactNode
 }
 const Index = ({ currentMonth, currentYear, prev, next, customHeader, changeMonth, changeYear }: props) => {
-    const month = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"]
+    const month = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre']
 
     return (
-        <div className="calendar-header">
+        <div className='calendar-header'>
             {customHeader ?
                 customHeader({ prev, next, currentMonth, currentYear, changeMonth, changeYear })
                 :
@@ -43,6 +43,5 @@ Index.prototype = {
     customHeader: PropTypes.func.isRequired,
     changeMonth: PropTypes.func.isRequired,
     changeYear: PropTypes.func.isRequired,
-
 }
 
