@@ -3,8 +3,8 @@
   "version": "0.0.9",
   "description": "",
   "main": "./dist/Datapicker.ts",
-  "module": "./dist/esm/Datapicker.d.ts",
-  "types": "./dist/esm/Datapicker.d.ts",
+  "module": "./dist/Datapicker.ts",
+  "types": "./dist/Datapicker.ts",
   "files": [
     "dist",
     "LICENSE",

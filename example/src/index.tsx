@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom/client'
 import { MyCounter } from 'my-react-typescript-package'
-import { Datapicker } from 'my-react-datapickerzadzadaz'
+import Datapicker from 'my-react-datapickerzadzadaz'
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 const [test, setTest] = useState('')
 root.render(
