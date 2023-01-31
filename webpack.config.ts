@@ -1,8 +1,10 @@
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
 module.exports = {
-  entry: './src/index.ts',
+  entry: path.resolve(__dirname, 'src/index.ts'),
   output: {
     filename: 'datapicker.ts',
     path: path.resolve(__dirname, 'dist'),
@@ -16,14 +18,22 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"]
+        use: ['style-loader', 'css-loader'],
       }
     ],
   },
   plugins: [
     new MiniCssExtractPlugin({
       filename: "bundle.css"
-    })
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: './src/stylesheets',
+          to: 'stylesheets',
+        },
+      ],
+    }),
   ],
   optimization: {
     minimizer: [
@@ -33,6 +43,8 @@ module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
+  devtool: 'source-map',
+  mode: 'development',
   devServer: {
     static: path.join(__dirname, "dist"),
     compress: true,
