@@ -1,103 +1,41 @@
-// const path = require('path');
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const CopyWebpackPlugin = require('copy-webpack-plugin');
-// const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-// const ESLintPlugin = require('eslint-webpack-plugin');
-
-// module.exports = {
-//   entry: {
-//     index: path.resolve(__dirname, 'src/pages/index.js'),
-//     photographer: path.resolve(__dirname, 'src/pages/photographer.js'),
-//   },
-//   output: {
-//     path: path.resolve(__dirname, 'dist'),
-//     filename: '[name].bundle.js',
-//   },
-//   module: {
-//     rules: [
-//       {
-//         test: /\.js$/,
-//         exclude: /node_modules/,
-//         use: {
-//           loader: 'babel-loader',
-//         },
-//       },
-//       {
-//         test: /\.scss$/i,
-//         use: ['style-loader', 'css-loader'],
-//       },
-//     ],
-//   },
-//   plugins: [
-//     new CleanWebpackPlugin(),
-//     new ESLintPlugin(),
-//     new CopyWebpackPlugin({
-//       patterns: [
-//         {
-//           from: './public/assets',
-//           to: 'assets',
-//         },
-//         {
-//           from: './public/css',
-//           to: 'css',
-//         },
-//         {
-//           from: './data/photographers.json',
-//           to: 'data',
-//         },
-//       ],
-//     }),
-//     new HtmlWebpackPlugin({
-//       filename: 'index.html',
-//       template: path.resolve(__dirname, 'public/index.html'),
-//       chunks: ['index'],
-//       scriptLoading: 'module',
-//     }),
-//     new HtmlWebpackPlugin({
-//       filename: 'photographer.html',
-//       template: path.resolve(__dirname, 'public/photographer.html'),
-//       chunks: ['photographer'],
-//       scriptLoading: 'module',
-//     }),
-//   ],
-//   devtool: 'source-map',
-//   mode: 'development',
-//   devServer: {
-//     static: path.resolve(__dirname, './dist'),
-//     open: true,
-//     port: 4000,
-//   },
-// };
-
 const path = require('path');
-
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 module.exports = {
-
-  // bundling mode
-  mode: 'production',
-
-  // entry files
   entry: './src/index.ts',
-
-  // output bundles (location)
   output: {
+    filename: 'datapicker.ts',
     path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js',
   },
-
-  // file resolutions
-  resolve: {
-    extensions: ['.ts', '.js'],
-  },
-
-  // loaders
   module: {
     rules: [
       {
-        test: /\.tsx?/,
+        test: /\.([cm]?ts|tsx)$/,
         use: 'ts-loader',
         exclude: /node_modules/,
+      },
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader"]
       }
-    ]
-  }
+    ],
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: "bundle.css"
+    })
+  ],
+  optimization: {
+    minimizer: [
+      new CssMinimizerPlugin()
+    ],
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
+  },
+  devServer: {
+    static: path.join(__dirname, "dist"),
+    compress: true,
+    port: 4000,
+  },
 };
