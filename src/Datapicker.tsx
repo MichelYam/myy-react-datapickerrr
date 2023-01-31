@@ -2,7 +2,7 @@ import React, { Dispatch, ReactNode, SetStateAction, useState } from 'react'
 import Calendar from './Calendar'
 import Input from './input'
 import PropTypes from 'prop-types'
-// import './stylesheets/datapicker.css'
+import './stylesheets/datapicker.css'
 
 type props = {
   dataFormat: string
