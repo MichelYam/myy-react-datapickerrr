@@ -2,8 +2,8 @@
   "name": "my-react-datapickerzadzadaz",
   "version": "0.0.4",
   "description": "",
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
+  "main": "./dist/datapicker.ts",
+  "module": "./dist/esm/index.d.ts",
   "types": "./dist/esm/index.d.ts",
   "files": [
     "dist",
