@@ -3,27 +3,27 @@ import CalendarHeader from './CalendarHeader'
 import { IParamsCalendarHeader } from './Datapicker'
 import Week from './Week'
 import PropTypes from 'prop-types'
-import './stylesheets/datapicker'
+// import './stylesheets/datapicker.css'
 
 type props = {
   dataFormat: string
   customHeader?(params: IParamsCalendarHeader): ReactNode
   setSelectedDate: Dispatch<SetStateAction<string>>
-  selectedDate: string,
-  setFocus: (value: boolean) => void,
-  focus: boolean,
+  selectedDate: string
+  setFocus: (value: boolean) => void
+  focus: boolean
 }
 type DayProps = {
-  value: string | number,
-  otherMonth: boolean | string,
+  value: string | number
+  otherMonth: boolean | string
   selected?: boolean
 }[]
 
 export type test = {
-  day: string | number,
-  month: string | number,
-  year: string | number,
-  otherMonth: string | number,
+  day: string | number
+  month: string | number
+  year: string | number
+  otherMonth: string | number
 }
 
 const Index = ({ customHeader, setSelectedDate, selectedDate, dataFormat, setFocus, focus }: props) => {
@@ -59,41 +59,40 @@ const Index = ({ customHeader, setSelectedDate, selectedDate, dataFormat, setFoc
    * @param year  currenn Year
    */
   const createCalendar = (month: number, year: number) => {
-    const firstWeekDay = new Date(year, month, 1).getUTCDay();
-    const lastDay = new Date(year, month + 1, 0).getDate();
+    const firstWeekDay = new Date(year, month, 1).getUTCDay()
+    const lastDay = new Date(year, month + 1, 0).getDate()
     const lastDayOfPrevMonth = new Date(year, month, 0).getDate()
-    let nextDay = 1;
-    let currentDate = 1;
+    let nextDay = 1
+    let currentDate = 1
     const newArr = []
-    for (let i = 0; i < (6 * 7); i++) {
+    for (let i = 0; i < 6 * 7; i++) {
       if (i < new Date(year, month, 1).getUTCDay()) {
         newArr.push({
           value: lastDayOfPrevMonth - firstWeekDay + i + 1,
           selected: false,
           otherMonth: 'previous-month',
           month: currentMonth === 0 ? 11 : currentMonth - 1,
-          year: currentMonth === 0 ? currentYear - 1 : currentYear
+          year: currentMonth === 0 ? currentYear - 1 : currentYear,
         })
-      }
-      else if (currentDate > lastDay) {
+      } else if (currentDate > lastDay) {
         newArr.push({
           value: nextDay,
           selected: false,
           otherMonth: 'next-month',
           month: currentMonth === 11 ? 0 : currentMonth + 1,
-          year: currentMonth === 11 ? currentYear + 1 : currentYear
+          year: currentMonth === 11 ? currentYear + 1 : currentYear,
         })
 
-        nextDay++;
+        nextDay++
       } else {
         newArr.push({
           value: currentDate,
           selected: isSameDay(daySelected, currentDate),
           otherMonth: false,
           month: currentMonth,
-          year: currentYear
+          year: currentYear,
         })
-        currentDate++;
+        currentDate++
       }
     }
     setCurrentDateCalendar(newArr)
@@ -111,8 +110,8 @@ const Index = ({ customHeader, setSelectedDate, selectedDate, dataFormat, setFoc
       if (currentMonth === 0) {
         newYear -= 1
         newMonth = 11
-        setCurrentMonth(11);
-        setCurrentYear(currentYear - 1);
+        setCurrentMonth(11)
+        setCurrentYear(currentYear - 1)
       } else {
         newMonth -= 1
         setCurrentMonth(currentMonth - 1)
@@ -123,25 +122,25 @@ const Index = ({ customHeader, setSelectedDate, selectedDate, dataFormat, setFoc
       if (currentMonth === 11) {
         newYear += 1
         newMonth = 0
-        setCurrentMonth(0);
-        setCurrentYear(currentYear + 1);
+        setCurrentMonth(0)
+        setCurrentYear(currentYear + 1)
       } else {
         newMonth += 1
         setCurrentMonth(currentMonth + 1)
       }
     }
 
-
     const month = newMonth + 1 < 10 ? '0' + (newMonth + 1) : newMonth + 1
     const year = newYear
 
-    dataFormat === 'MM/DD/YYYY' ? setSelectedDate(`${month}/${daySelected.day}/${year}`) :
-      setSelectedDate(`${daySelected.day}/${month}/${year}`)
+    dataFormat === 'MM/DD/YYYY'
+      ? setSelectedDate(`${month}/${daySelected.day}/${year}`)
+      : setSelectedDate(`${daySelected.day}/${month}/${year}`)
     setFocus(false)
   }
 
   /**
-   * 
+   *
    * @param date object : information on the selected date
    * @param currentDate : calendar day
    * @returns true if the date is selected
@@ -157,12 +156,16 @@ const Index = ({ customHeader, setSelectedDate, selectedDate, dataFormat, setFoc
       return true
     } else if (date && date.day == currentDate && date.month === currentMonth && date.year === currentYear) {
       return true
-    } else if (selectedDate && dateInput[0] === currentDate && dateInput[1] - 1 === currentMonth && dateInput[2] === currentYear) {
+    } else if (
+      selectedDate &&
+      dateInput[0] === currentDate &&
+      dateInput[1] - 1 === currentMonth &&
+      dateInput[2] === currentYear
+    ) {
       return true
     } else {
       return false
     }
-
   }
   /**
    * Handle date written by user
@@ -176,7 +179,7 @@ const Index = ({ customHeader, setSelectedDate, selectedDate, dataFormat, setFoc
     }
   }
   /**
-   *  set the current month 
+   *  set the current month
    */
   const next = () => {
     if (currentMonth === 11) {
@@ -187,7 +190,7 @@ const Index = ({ customHeader, setSelectedDate, selectedDate, dataFormat, setFoc
     }
   }
   /**
-   * set the current month 
+   * set the current month
    */
   const prev = () => {
     if (currentMonth === 0) {
@@ -200,7 +203,15 @@ const Index = ({ customHeader, setSelectedDate, selectedDate, dataFormat, setFoc
   return (
     <div className={`datapicker-calendar ${focus ? 'show' : ''} `}>
       <div className='calendar'>
-        <CalendarHeader currentMonth={currentMonth} currentYear={currentYear} next={next} prev={prev} customHeader={customHeader} changeYear={setCurrentYear} changeMonth={setCurrentMonth} />
+        <CalendarHeader
+          currentMonth={currentMonth}
+          currentYear={currentYear}
+          next={next}
+          prev={prev}
+          customHeader={customHeader}
+          changeYear={setCurrentYear}
+          changeMonth={setCurrentMonth}
+        />
         <div className='calendar-body'>
           <div className='calendar-day'>
             {listOfDay.map((day, index) => (
@@ -210,15 +221,13 @@ const Index = ({ customHeader, setSelectedDate, selectedDate, dataFormat, setFoc
             ))}
           </div>
           <div id='calendar-container' className='calendar-container'>
-            {
-              [...Array(6)].map((_value, index) => (
-                <Week key={index} calendarData={currentDateCalendar} indexWeek={index} setDaySelected={setDaySelected} />
-              ))
-            }
+            {[...Array(6)].map((_value, index) => (
+              <Week key={index} calendarData={currentDateCalendar} indexWeek={index} setDaySelected={setDaySelected} />
+            ))}
           </div>
         </div>
       </div>
-    </div >
+    </div>
   )
 }
 
