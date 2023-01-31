@@ -6,7 +6,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
   entry: path.resolve(__dirname, 'src/index.ts'),
   output: {
-    filename: 'datapicker.ts',
+    filename: 'Datapicker.ts',
     path: path.resolve(__dirname, 'dist'),
   },
   module: {
