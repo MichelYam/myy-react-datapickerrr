@@ -3,7 +3,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { IParamsCalendarHeader } from './Datapicker';
 import PropTypes from 'prop-types'
-import './stylesheets/datapicker'
+import './stylesheets/datapicker.css'
 
 type props = {
     currentMonth: number | string,

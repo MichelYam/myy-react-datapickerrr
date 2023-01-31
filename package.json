@@ -1,6 +1,6 @@
 {
   "name": "my-react-datapicker",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -14,8 +14,8 @@
     "build": " yarn copy-files &&yarn build:esm && yarn build:cjs",
     "build:esm": "tsc",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
-    "lint": "eslint \"{**/*,*}.{js,ts,jsx,tsx}\"",
-    "prettier": "prettier --write \"{src,tests,example/src}/**/*.{js,ts,jsx,tsx}\"",
+    "lint": "eslint \"{**/*,*}.{js,ts,jsx,tsx,css}\"",
+    "prettier": "prettier --write \"{src,tests,example/src}/**/*.{js,ts,jsx,tsx,css}\"",
     "test": "jest --config jestconfig.json",
     "copy-files": "copyfiles -u 1 src/**/*.html src/**/*.css dist/cjs dist/esm",
     "prepare": "npm run build",

@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import './stylesheets/datapicker'
+import './stylesheets/datapicker.css'
 
 
 type Props = {
