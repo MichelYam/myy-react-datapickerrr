@@ -1,6 +1,6 @@
 {
   "name": "my-react-datapickerzadzadaz",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "",
   "main": "./dist/Datapicker.ts",
   "module": "./dist/Datapicker.ts",
