@@ -2,7 +2,7 @@
   "name": "my-react-datapickerzadzadaz",
   "version": "0.0.7",
   "description": "",
-  "main": "./dist/datapicker.ts",
+  "main": "./dist/Datapicker.ts",
   "module": "./dist/esm/index.d.ts",
   "types": "./dist/esm/index.d.ts",
   "files": [
