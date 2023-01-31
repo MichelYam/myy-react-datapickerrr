@@ -1,9 +1,9 @@
 import React, { Dispatch, ReactNode, SetStateAction, useEffect, useState } from 'react'
-import './style.css'
-import CalendarHeader from './Calendar-header'
-import { IParamsCalendarHeader } from '../Datapicker'
+import CalendarHeader from './CalendarHeader'
+import { IParamsCalendarHeader } from './Datapicker'
 import Week from './Week'
 import PropTypes from 'prop-types'
+import './stylesheets/datapicker'
 
 type props = {
   dataFormat: string

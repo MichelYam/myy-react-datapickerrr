@@ -1,8 +1,9 @@
 import React, { ReactNode } from 'react'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import { IParamsCalendarHeader } from '../../Datapicker';
+import { IParamsCalendarHeader } from './Datapicker';
 import PropTypes from 'prop-types'
+import './stylesheets/datapicker'
 
 type props = {
     currentMonth: number | string,

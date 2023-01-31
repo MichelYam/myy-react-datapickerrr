@@ -1,6 +1,7 @@
 import React from 'react'
-import Day from '../Day'
+import Day from './Day'
 import PropTypes from 'prop-types'
+import './stylesheets/datapicker'
 
 type dayprop = {
     value: string | number,

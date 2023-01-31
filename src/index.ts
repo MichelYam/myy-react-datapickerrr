@@ -1,3 +1,3 @@
-import Datapicker from './components/Datapicker'
+import Datapicker from './Datapicker'
 
 export { Datapicker }

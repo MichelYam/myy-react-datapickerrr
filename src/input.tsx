@@ -1,7 +1,7 @@
 import React from 'react'
-import "./style.css"
-
 import PropTypes from 'prop-types'
+import './stylesheets/datapicker'
+
 type props = {
     selectedDate: string,
     setSelectedDate: (value: string | ((prevVar: string) => string)) => void
