@@ -2,7 +2,7 @@
   "name": "my-react-datapickerzadzadaz",
   "version": "0.0.13",
   "description": "",
-  "main": "./dist/Datapicker.ts",
+  "main": "./dist/Datapicker.js",
   "module": "./dist/Datapicker.ts",
   "types": "./dist/Datapicker.ts",
   "files": [
@@ -11,7 +11,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "webpack --mode production",
+    "build": "webpack",
     "build:esm": "tsc",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
     "lint": "eslint \"{**/*,*}.{js,ts,jsx,tsx}\"",
