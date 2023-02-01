@@ -1,10 +1,10 @@
 {
-  "name": "my-react-datapickerzadzadaz",
-  "version": "0.0.13",
+  "name": "my-react-datapicker",
+  "version": "0.0.3",
   "description": "",
-  "main": "./dist/Datapicker.ts",
-  "module": "./dist/Datapicker.ts",
-  "types": "./dist/Datapicker.ts",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
   "files": [
     "dist",
     "LICENSE",
