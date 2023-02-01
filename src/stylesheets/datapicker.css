@@ -58,10 +58,13 @@
 .day, .day-week {
   margin: 3px;
   padding: 3px;
-  /* width: calc(100% / 7); */
-  width: 22px;
+  width: calc(100% / 7);
   text-align: center;
+  /* align-items: center; */
   font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .other-month {
