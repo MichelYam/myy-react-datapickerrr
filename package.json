@@ -11,7 +11,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "webpack",
+    "build": "webpack && yarn build:esm",
     "build:esm": "tsc",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
     "lint": "eslint \"{**/*,*}.{js,ts,jsx,tsx}\"",
