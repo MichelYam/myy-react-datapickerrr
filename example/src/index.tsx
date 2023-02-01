@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { MyCounter } from 'my-react-typescript-package'
-import { Datapicker } from 'my-react-datapickerzadzadaz'
+import DatapickerContainer from './datapicker'
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
-const [test, setTest] = useState('')
 root.render(
   <React.StrictMode>
     <div>
@@ -14,7 +13,7 @@ root.render(
     <div>
       <h2>Counter with predefined value</h2>
       <MyCounter value={5} />
-      <Datapicker dataFormat='DD/MM/YYYY' selectedDate={test} setSelectedDate={setTest} />
+      <DatapickerContainer />
     </div>
   </React.StrictMode>,
 )
