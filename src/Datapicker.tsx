@@ -34,14 +34,14 @@ const Datapicker = ({ selectedDate, setSelectedDate, customHeader, dataFormat }:
         setSelectedDate={setSelectedDate}
         dataFormat={dataFormat}
       />
-      <Calendar
+      {focus && <Calendar
         focus={focus}
         setFocus={() => setFocus(false)}
         customHeader={customHeader}
         selectedDate={selectedDate}
         setSelectedDate={setSelectedDate}
         dataFormat={dataFormat}
-      />
+      />}
     </div>
   )
 }
