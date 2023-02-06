@@ -19,29 +19,24 @@ export interface IParamsCalendarHeader {
   changeYear: (value: number) => void
 }
 const Datapicker = ({ selectedDate, setSelectedDate, customHeader, dataFormat }: props) => {
-  const [focus, setFocus] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
   return (
-    <div
-      className='datapicker'
-      onBlur={() => {
-        setFocus(false)
-      }}
-    >
-      <Input
-        setFocus={setFocus}
-        focus={focus}
-        selectedDate={selectedDate}
-        setSelectedDate={setSelectedDate}
-        dataFormat={dataFormat}
-      />
-      {focus && <Calendar
-        focus={focus}
-        setFocus={() => setFocus(false)}
-        customHeader={customHeader}
-        selectedDate={selectedDate}
-        setSelectedDate={setSelectedDate}
-        dataFormat={dataFormat}
-      />}
+    <div className='datapicker'>
+      <div className='datapicker-input' onClick={() => setIsOpen(true)}>
+        <Input
+          selectedDate={selectedDate}
+          setSelectedDate={setSelectedDate}
+          dataFormat={dataFormat}
+        />
+        {isOpen && <Calendar
+          isOpen={isOpen}
+          setIsOpen={() => setIsOpen(false)}
+          customHeader={customHeader}
+          selectedDate={selectedDate}
+          setSelectedDate={setSelectedDate}
+          dataFormat={dataFormat}
+        />}
+      </div>
     </div>
   )
 }
@@ -51,6 +46,6 @@ export default Datapicker
 Datapicker.prototype = {
   selectedDate: PropTypes.string.isRequired,
   setSelectedDate: PropTypes.func.isRequired,
-  customHeader: PropTypes.func.isRequired,
-  dataFormat: PropTypes.string.isRequired,
+  customHeader: PropTypes.func,
+  dataFormat: PropTypes.string,
 }

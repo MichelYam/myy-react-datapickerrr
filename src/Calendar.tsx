@@ -10,8 +10,8 @@ type props = {
   customHeader?(params: IParamsCalendarHeader): ReactNode
   setSelectedDate: Dispatch<SetStateAction<string>>
   selectedDate: string
-  setFocus: (value: boolean) => void
-  focus: boolean
+  setIsOpen: (value: boolean) => void
+  isOpen: boolean
 }
 type DayProps = {
   value: string | number
@@ -26,7 +26,7 @@ export type test = {
   otherMonth: string | number
 }
 
-const Index = ({ customHeader, setSelectedDate, selectedDate, dataFormat, setFocus, focus }: props) => {
+const Index = ({ customHeader, setSelectedDate, selectedDate, dataFormat, setIsOpen }: props) => {
   const [currentDateCalendar, setCurrentDateCalendar] = useState<DayProps>([])
   const [currentMonth, setCurrentMonth] = useState<number>(new Date().getMonth())
   const [currentYear, setCurrentYear] = useState<number>(new Date().getFullYear())
@@ -53,6 +53,31 @@ const Index = ({ customHeader, setSelectedDate, selectedDate, dataFormat, setFoc
     createCalendar(currentMonth, currentYear)
   }, [selectedDate])
 
+  useEffect(() => {
+    document.addEventListener("click", handleWindowMouseDown);
+  }, [])
+
+  /**
+   * handle the closing of the calendar
+   * @param event detect the mouse click 
+   * 
+   */
+  const handleWindowMouseDown = (event: MouseEvent): void => {
+    const calendar = document.querySelector(".calendar")
+    const datepicker = document.querySelector(".datapicker-input")
+
+    if (!(calendar && datepicker)) {
+      return;
+    }
+
+    const eventIsOutside = !calendar.contains(event.target as Node) && calendar !== event.target;
+    const eventIsOnPopoverAnchor = datepicker.contains(event.target as Node) || datepicker === event.target;
+
+
+    if (eventIsOutside && !eventIsOnPopoverAnchor) {
+      setIsOpen(false);
+    }
+  }
   /**
    * create a calender with current month and year
    * @param month current Month
@@ -136,7 +161,7 @@ const Index = ({ customHeader, setSelectedDate, selectedDate, dataFormat, setFoc
     dataFormat === 'MM/DD/YYYY'
       ? setSelectedDate(`${month}/${daySelected.day}/${year}`)
       : setSelectedDate(`${daySelected.day}/${month}/${year}`)
-    setFocus(false)
+    setIsOpen(false)
   }
 
   /**
@@ -201,7 +226,7 @@ const Index = ({ customHeader, setSelectedDate, selectedDate, dataFormat, setFoc
     }
   }
   return (
-    <div className={`datapicker-calendar ${focus ? 'show' : ''} `}>
+    <div className="datapicker-calendar">
       <div className='calendar'>
         <CalendarHeader
           currentMonth={currentMonth}
@@ -234,7 +259,9 @@ const Index = ({ customHeader, setSelectedDate, selectedDate, dataFormat, setFoc
 export default Index
 
 Index.prototype = {
-  customHeader: PropTypes.func.isRequired,
   setSelectedDate: PropTypes.func.isRequired,
-  dataFormat: PropTypes.string.isRequired,
+  selectedDate: PropTypes.func.isRequired,
+  setIsOpen: PropTypes.func.isRequired,
+  customHeader: PropTypes.func,
+  dataFormat: PropTypes.string,
 }

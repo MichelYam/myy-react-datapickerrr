@@ -40,6 +40,8 @@ export default Index
 Index.prototype = {
   value: PropTypes.string,
   selected: PropTypes.string,
+  otherMonth: PropTypes.string,
   month: PropTypes.string,
   setDaySelected: PropTypes.func,
+  year: PropTypes.string,
 }
